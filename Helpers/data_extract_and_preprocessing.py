@@ -1,13 +1,10 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-
+from Definitions.constants import DATASET_PATH
+path_ = DATASET_PATH
 
 class DATA:
     def __init__(self):
-
-        from Definitions.constants import e_path
-        path_ = e_path
-
         self.path = path_
         self.data = pd.read_csv(self.path)
 
@@ -39,20 +36,22 @@ class DATA:
         corr =self.data.corr()
         return corr
 
-    def run_ep_print(self):
-        self.print_data_col()
-        self.null_data()
-        self.head()
-        print(self.calc_corr()["total_emission"].sort_values(ascending=True))
+    def print_corr(self):
+        return print(self.calc_corr()["total_emission"].sort_values(ascending=True))
 
     def return_data(self):
+        self.fill_null_data()
+        self.calc_corr()
         return self.data
 
-    def run_ep_function(self):
-        self.fill_null_data()
-        return self.return_data()
 
 
 
 
+if __name__ == "__main__":
+    data =DATA()
+    data.return_data()
+    data.print_data_col()
+    data.head()
+    data.print_corr()
 

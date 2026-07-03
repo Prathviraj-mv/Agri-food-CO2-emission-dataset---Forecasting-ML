@@ -1,14 +1,18 @@
 from Helpers.data_extract_and_preprocessing import DATA
 from Helpers.plotters import  PLOT
+from Helpers.IOdata import  IO
+from Model.Random_forest import RF_MODEL
+
 
 class APP_:
     def __init__(self):
+        DATA().return_data()
+        PLOT().plot_correlation()
+        RF_MODEL().rf_model()
 
-        data = DATA()
-        data.run_ep_print()
-        data.run_ep_function()
 
-        plot =PLOT()
-        plot.plot_correlation()
+
+
+
 
 

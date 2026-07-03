@@ -19,5 +19,9 @@ class PLOT:
             linewidths=0.5,
             )
         plt.title("Correlation Matrix Heatmap")
+        plt.savefig("Plots/preprocessingHeatmap/heatmap.png")
         plt.show()
 
+if __name__ == "__main__":
+        plot =PLOT()
+        plot.plot_correlation()
