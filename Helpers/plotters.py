@@ -1,5 +1,6 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
+from Definitions.constants import OUTPUT_DIR_p
 
 from Helpers.data_extract_and_preprocessing import DATA
 
@@ -19,7 +20,7 @@ class PLOT:
             linewidths=0.5,
             )
         plt.title("Correlation Matrix Heatmap")
-        plt.savefig("Plots/preprocessingHeatmap/heatmap.png")
+        plt.savefig(OUTPUT_DIR_p/"heatmap.png")
         plt.show()
 
 if __name__ == "__main__":

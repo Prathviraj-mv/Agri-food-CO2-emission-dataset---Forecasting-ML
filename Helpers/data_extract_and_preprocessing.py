@@ -5,7 +5,7 @@ path_ = DATASET_PATH
 class DATA:
     def __init__(self):
         self.path = path_
-        columns = [
+        self.columns = [
             "label",
             "lepton_pt", "lepton_eta", "lepton_phi",
             "missing_energy_magnitude", "missing_energy_phi",
@@ -17,9 +17,10 @@ class DATA:
         ]
 
         self.data = pd.read_csv(
-            path_,
-            names=columns,
-            header=None
+            self.path,
+            names=self.columns,
+            header=None,
+            dtype="float32"
         )
 
     def head(self):
@@ -32,24 +33,20 @@ class DATA:
         return print(self.data.isnull().sum())
 
     def calc_corr(self):
-        pass
+        corr_ = self.data.corr()
+        return corr_
 
     def print_corr(self):
-        pass
-
+        print(self.calc_corr()["label"].sort_values(ascending=True))
 
     # Final Data Return
 
     def return_data(self):
         return self.data
 
-
-
-
-
 if __name__ == "__main__":
     data =DATA()
-    data.return_data()
+    data.null_data()
     data.print_data_col()
     data.head()
     data.print_corr()
