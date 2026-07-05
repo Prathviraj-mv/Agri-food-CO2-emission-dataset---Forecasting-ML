@@ -8,8 +8,8 @@ RESULTS_DIR = ROOT_DIR / "Results"
 
 MODELS_DIR = ROOT_DIR / "ML_Model"
 
-OUTPUT_DIR_p = ROOT_DIR / "Plots" / "preprocessingHeatmap"
-OUTPUT_DIR_rf = ROOT_DIR / "Plots" / "plots"
-OUTPUT_DIR_lr = ROOT_DIR / "Plots" / "plots"
-OUTPUT_DIR_ = ROOT_DIR / "Plots" / "plots"
+OUTPUT_DIR_p = ROOT_DIR / "EDA Plots"
+OUTPUT_DIR_rf = ROOT_DIR / "Model Plots" /"RD"
+OUTPUT_DIR_lr = ROOT_DIR / "Model Plots" / "LF"
+OUTPUT_DIR_xg = ROOT_DIR / "Model Plots" / "XG"
 

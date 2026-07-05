@@ -1,6 +1,6 @@
 import seaborn as sns
 import matplotlib.pyplot as plt
-from Definitions.constants import OUTPUT_DIR_p,OUTPUT_DIR_rf
+from Definitions.constants import OUTPUT_DIR_p
 
 from Helpers.data_extract_and_preprocessing import DATA
 
@@ -8,7 +8,7 @@ class PLOT:
     def __init__(self):
         pass
 
-    def plot_correlation(self):
+    def plot_correlation(self,x):
         correlation = DATA().calc_corr()
 
         plt.figure(figsize=(10,5))
@@ -20,12 +20,13 @@ class PLOT:
             linewidths=0.5,
             )
         plt.title("Correlation Matrix Heatmap")
-        plt.savefig(OUTPUT_DIR_p/"heatmap.png")
+        plt.savefig(x /"heatmap.png")
 
 
-    def  plot_confusion_matrix(self,value):
+
+
+    def  plot_confusion_matrix(self,value,x):
         plt.figure(figsize=(20,15))
-        sns.heatmap()
         sns.heatmap(value,
                     fmt=".1f",
                     annot=True,
@@ -34,9 +35,9 @@ class PLOT:
                     linewidths=0.5,
                     )
         plt.title("CONFUSION Matrix ")
-        plt.savefig(OUTPUT_DIR_rf / "heatmap.png")
+        plt.savefig(x / "heatmap.png")
 
 
 if __name__ == "__main__":
         plot =PLOT()
-        plot.plot_correlation()
+        plot.plot_correlation(OUTPUT_DIR_p)

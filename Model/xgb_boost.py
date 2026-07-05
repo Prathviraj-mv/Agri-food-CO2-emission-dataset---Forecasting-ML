@@ -5,6 +5,7 @@ import joblib
 
 from Helpers.IOdata import IO
 from Helpers.plotters import PLOT
+from Definitions.constants import OUTPUT_DIR_xg
 
 
 class XGB_MODEL:
@@ -22,15 +23,14 @@ class XGB_MODEL:
         )
 
         param_grid = {
-            "n_estimators": [100, 200, 300],
-            "max_depth": [4, 6, 8],
-            "learning_rate": [0.01, 0.05, 0.1],
-            "subsample": [0.8, 1.0],
-            "colsample_bytree": [0.8, 1.0],
-            "gamma": [0, 0.1, 0.3],
-            "min_child_weight": [1, 3, 5]
+            "n_estimators": [200, 300],
+            "max_depth": [6, 8],
+            "learning_rate": [0.05, 0.1],
+            "subsample": [0.8],
+            "colsample_bytree": [0.8],
+            "gamma": [0, 0.1],
+            "min_child_weight": [1, 3]
         }
-
         grid = GridSearchCV(
             estimator=xgb,
             param_grid=param_grid,
@@ -58,7 +58,7 @@ class XGB_MODEL:
         value = confusion_matrix(io.y_test, prediction)
 
         plot = PLOT()
-        plot.plot_confusion_matrix(value=value)
+        plot.plot_confusion_matrix(value=value,x = OUTPUT_DIR_xg) # directory for the plot to be saved
 
         best_model = grid.best_estimator_
 

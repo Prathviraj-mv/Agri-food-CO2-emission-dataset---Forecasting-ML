@@ -4,6 +4,7 @@ from sklearn.model_selection import GridSearchCV
 import joblib
 from Helpers.IOdata import IO
 from Helpers.plotters import PLOT
+from Definitions.constants import OUTPUT_DIR_rf
 
 
 class RF_MODEL:
@@ -14,7 +15,7 @@ class RF_MODEL:
         rf = RandomForestClassifier(random_state=42)
 
         param_grid = {
-            'n_estimators': [50, 100, 200],
+            'n_estimators': [100, 200],
             'max_depth': [None, 10, 20],
             'min_samples_split': [2, 5],
             'min_samples_leaf': [1, 2],
@@ -38,7 +39,7 @@ class RF_MODEL:
         print(classification_report(y_true=io.y_test,y_pred=prediction))
         value =confusion_matrix(y_true=io.y_test,y_pred=prediction)
         plot =PLOT()
-        plot.plot_confusion_matrix(value=value)
+        plot.plot_confusion_matrix(value=value,x=OUTPUT_DIR_rf)
 
         best_model = grid.best_estimator_
 
