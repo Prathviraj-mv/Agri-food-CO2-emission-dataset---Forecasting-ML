@@ -1,10 +1,11 @@
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report,confusion_matrix
-from sklearn.model_selection import GridSearchCV
 import joblib
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.model_selection import GridSearchCV
+
+from Definitions.constants import OUTPUT_DIR_rf
 from Helpers.IOdata import IO
 from Helpers.plotters import PLOT
-from Definitions.constants import OUTPUT_DIR_rf
 
 
 class RF_MODEL:
@@ -36,14 +37,14 @@ class RF_MODEL:
 
         prediction = grid.best_estimator_.predict(io.X_test)
 
-        print(classification_report(y_true=io.y_test,y_pred=prediction))
-        value =confusion_matrix(y_true=io.y_test,y_pred=prediction)
-        plot =PLOT()
-        plot.plot_confusion_matrix(value=value,x=OUTPUT_DIR_rf)
+        print(classification_report(y_true=io.y_test, y_pred=prediction))
+        value = confusion_matrix(y_true=io.y_test, y_pred=prediction)
+        plot = PLOT()
+        plot.plot_confusion_matrix(value=value, x=OUTPUT_DIR_rf)
 
         best_model = grid.best_estimator_
 
         print()
-        joblib.dump(best_model,"ML_Model/RF/rfr.pkl")
+        joblib.dump(best_model, "ML_Model/RF/rfr.pkl")
 
         return None

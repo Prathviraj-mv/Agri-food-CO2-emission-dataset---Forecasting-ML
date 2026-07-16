@@ -1,11 +1,11 @@
-from xgboost import XGBClassifier
+import joblib
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import GridSearchCV
-import joblib
+from xgboost import XGBClassifier
 
+from Definitions.constants import OUTPUT_DIR_xg
 from Helpers.IOdata import IO
 from Helpers.plotters import PLOT
-from Definitions.constants import OUTPUT_DIR_xg
 
 
 class XGB_MODEL:
@@ -13,10 +13,9 @@ class XGB_MODEL:
         pass
 
     def xgb_model(self):
-
         xgb = XGBClassifier(
             tree_method="hist",
-            device="cuda",          # Use NVIDIA GPU
+            device="cuda",  # Use NVIDIA GPU
             objective="binary:logistic",
             eval_metric="logloss",
             random_state=42
@@ -58,11 +57,10 @@ class XGB_MODEL:
         value = confusion_matrix(io.y_test, prediction)
 
         plot = PLOT()
-        plot.plot_confusion_matrix(value=value,x = OUTPUT_DIR_xg) # directory for the plot to be saved
+        plot.plot_confusion_matrix(value=value, x=OUTPUT_DIR_xg)  # directory for the plot to be saved
 
         best_model = grid.best_estimator_
 
         joblib.dump(best_model, "ML_Model/XGBoost/xgb_model.pkl")
-        print("\nModel saved successfully.")
 
         return None
